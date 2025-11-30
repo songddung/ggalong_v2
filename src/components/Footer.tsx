@@ -1,4 +1,4 @@
-import { Github, Mail, FileText } from 'lucide-react';
+import { Github, Mail } from 'lucide-react';
 import tistoryIcon from '../assets/tistory.png';
 import { Button } from './ui/button';
 
@@ -32,8 +32,9 @@ const Footer = () => {
               <span className="ml-3 text-lg font-semibold">백엔드 개발자</span>
             </div>
             <p className="text-muted-foreground max-w-md">
-              확장 가능하고 안정적인 백엔드 시스템을 구축하는 데 열정을 가진 개발자입니다.
-              최신 기술과 모범 사례를 활용하여 효율적인 솔루션을 제공합니다.
+              새로운 문제에 주저하지 않고 도전하며,
+              <br /> 탄탄한 기본기로 합리적인 해결책을 제시하겠습니다.
+              <br /> 감사합니다.
             </p>
           </div>
 

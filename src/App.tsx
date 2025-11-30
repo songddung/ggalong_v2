@@ -12,6 +12,7 @@ import { ImageWithFallback } from './components/figma/ImageWithFallback';
 import tistoryIcon from './assets/tistory.png';
 import profileImage from './assets/hyunkwang.jpg';
 import portfolioPdf from './assets/portfolio.pdf';
+import dashboardImage from './assets/dashboard.png';
 import ProjectDetailPage from './ProjectDetailPage';
 
 export default function App() {
@@ -75,7 +76,7 @@ export default function App() {
       title: 'CHAMBER: 실시간 구역별 스마트 공조 관리 시스템',
       description: '실시간 IoT 센서 데이터를 시각화하고 제어하는 스마트 공조 관리 시스템의 프론트엔드 전체를 담당했습니다. React 기반의 웹 대시보드와 Flutter 기반의 모바일 앱을 개발했습니다.',
       longDescription: 'WebSocket을 이용해 100ms 이내의 실시간 데이터 동기화를 구현했으며, 특히 Flutter 앱에서는 색맹 모드 4종을 포함한 전역 접근성 시스템을 설계하여 모든 UI에 적용했습니다. React 웹에서는 사용자 입력과 실시간 데이터 간의 충돌을 해결하여 입력 보존율 100%를 달성했습니다.',
-      image: 'https://images.unsplash.com/photo-1744868562210-fffb7fa882d9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxkYXRhYmFzZSUyMHNlcnZlciUyMHJvb218ZW58MXx8fHwxNzU5MjEyNDM5fDA&lib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: dashboardImage,
       duration: '2025년 7월 - 2025년 8월 (7주)',
       technologies: ['React', 'Flutter', 'TypeScript', 'Websocket', 'Zustand', 'Tanstack Query'],
       githubUrl: 'https://github.com/username/analytics-dashboard',

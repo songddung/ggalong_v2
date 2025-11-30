@@ -20,6 +20,13 @@ const techIcons: { [key: string]: React.ReactNode } = {
     Docker: <Code className="w-4 h-4" />,
     Kubernetes: <Code className="w-4 h-4" />,
     Prisma: <Code className="w-4 h-4" />,
+    'React Native': <Code className="w-4 h-4" />,
+    'React': <Code className="w-4 h-4" />,
+    'Flutter': <Code className="w-4 h-4" />,
+    'TypeScript': <Code className="w-4 h-4" />,
+    'Websocket': <Code className="w-4 h-4" />,
+    'Zustand': <Code className="w-4 h-4" />,
+    'Tanstack Query': <Code className="w-4 h-4" />,
 };
 
 const renderWithLineBreaks = (text: string) => {

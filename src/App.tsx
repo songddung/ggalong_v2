@@ -193,7 +193,7 @@ export default function App() {
                           궁금증이 많아서 문제의 원인을 파고들고, 그 과정에서 더 나은 해결책을 찾는 걸 즐깁니다. <br />
                           "왜?"라는 질문이 결국 더 나은 시스템을 만든다고 믿습니다.
                         </p>
-                        <div className="flex flex-wrap gap-4">
+                        {/* <div className="flex flex-wrap gap-4">
                           <Button size="lg" className="group">
                             <Mail className="w-4 h-4 mr-2" />
                             연락하기
@@ -203,7 +203,7 @@ export default function App() {
                             <Download className="w-4 h-4 mr-2" />
                             이력서 다운로드
                           </Button>
-                        </div>
+                        </div> */}
 
                         <div className="flex gap-4 pt-4">
                           <Button variant="ghost" size="sm" asChild>

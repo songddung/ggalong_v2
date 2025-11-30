@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  traefik:
+    image: traefik:v2.11
+    container_name: traefik
+    command:
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.myresolver.acme.email=shk8476@gmail.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./letsencrypt:/letsencrypt"
+    restart: always
+
+  
+  web:
+    image: songhyunkwang/my-portfolio:latest
+    container_name: portfolio-container
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portfolio.rule=Host(`ggalong.me`)"
+      - "traefik.http.routers.portfolio.entrypoints=web"
+      - "traefik.http.middlewares.portfolio-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.portfolio.middlewares=portfolio-https-redirect"
+      - "traefik.http.routers.portfolio-secure.rule=Host(`ggalong.me`)"
+      - "traefik.http.routers.portfolio-secure.entrypoints=websecure"
+      - "traefik.http.routers.portfolio-secure.tls=true"
+      - "traefik.http.routers.portfolio-secure.tls.certresolver=myresolver"

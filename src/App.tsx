@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, Github, Mail, Code, Database, Server, Cloud, ArrowRight, ExternalLink } from 'lucide-react';
+import { Download, Github, Mail, Code, Database, Server, Cloud, ExternalLink } from 'lucide-react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -14,10 +14,9 @@ import { ImageModal } from './components/ImageModal';
 import tistoryIcon from './assets/tistory.png';
 import profileImage from './assets/hyunkwang.jpg';
 import portfolioPdf from './assets/portfolio.pdf';
-import dashboardImage from './assets/dashboard.png';
-import p1Image from './assets/공통.png';
-import p2Image from './assets/특화.png';
-import p3Image from './assets/자율.png';
+import p1Image from './assets/common-project.png';
+import p2Image from './assets/specialized-project.png';
+import p3Image from './assets/autonomous-project.png';
 import ProjectDetailPage from './ProjectDetailPage';
 
 export default function App() {

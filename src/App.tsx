@@ -1,3 +1,4 @@
+import React from 'react';
 import { Download, Github, Mail, Code, Database, Server, Cloud, ArrowRight, ExternalLink } from 'lucide-react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
@@ -9,13 +10,18 @@ import { Button } from './components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './components/ui/card';
 import { Separator } from './components/ui/separator';
 import { ImageWithFallback } from './components/figma/ImageWithFallback';
+import { ImageModal } from './components/ImageModal';
 import tistoryIcon from './assets/tistory.png';
 import profileImage from './assets/hyunkwang.jpg';
 import portfolioPdf from './assets/portfolio.pdf';
 import dashboardImage from './assets/dashboard.png';
+import p1Image from './assets/공통.png';
+import p2Image from './assets/특화.png';
+import p3Image from './assets/자율.png';
 import ProjectDetailPage from './ProjectDetailPage';
 
 export default function App() {
+  const [isProfileModalOpen, setIsProfileModalOpen] = React.useState(false);
 
   const projects: Project[] = [
     {
@@ -23,7 +29,7 @@ export default function App() {
       title: `PAI(Parent & I): \n 아이 질문 기반 지능형 추천 시스템`,
       description: `아이의 질문 데이터를 분석해 관심사를 추출하고 맞춤형 콘텐츠를 추천하는 AI 기반 인터랙션 시스템입니다. \n User, Media, Insight 서비스 개발을 주도하며 시스템의 핵심 기능을 구축했습니다.`,
       longDescription: 'JWT 인증, S3를 활용한 미디어 처리, 관심도 계산 알고리즘 및 외부 API 연동을 포함한 3개의 핵심 서비스를 담당했습니다. 특히 Redis 기반 토큰 버전 관리로 JWT의 보안 취약점을 해결하고, Promise.all 병렬 처리로 이미지 로딩 시간을 75% 단축하는 등 성능과 안정성을 동시에 개선한 경험이 있습니다.',
-      image: 'https://images.unsplash.com/photo-1575388902449-6bca946ad549?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxhcGklMjBkYXNoYm9hcmQlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzU5MjEyNDM5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: p2Image,
       duration: '2025년 8월 - 2025년 9월 (5주)',
       technologies: ['Node.js', 'NestJS', 'PostgreSQL', 'Prisma', 'Redis', 'Docker', 'React Native'],
       githubUrl: 'https://github.com/YJ856/PAI_before',
@@ -49,13 +55,13 @@ export default function App() {
     },
     {
       id: '2',
-      title: 'PAI : Refactor (MSA/DDD)',
+      title: 'PAI : \nRefactor (MSA/DDD)',
       description: `기존 PAI 프로젝트의 확장성과 유지보수성을 확보하기 위해 Hexagonal Architecture와 DDD를 적용하여 Clean Architecture 구조로 재구성한 리팩토링 프로젝트입니다.`,
       longDescription: '단일 서버를 7개의 독립적인 마이크로 서비스로 분리하고, Entity와 Value Object 패턴으로 도메인 로직을 명확화했습니다. Kubernetes를 도입하여 독립 배포, 자동 스케일링 환경을 구축했습니다.',
-      image: 'https://images.unsplash.com/photo-1735715606137-b1f47142f7b4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxjbG91ZCUyMGFyY2hpdGVjdHVyZSUyMGRpYWdyYW18ZW58MXx8fHwxNzU5MTUzNDkyfDA&lib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: p3Image,
       duration: '2025년 10월 - 2025년 11월 (~ing)',
       technologies: ['Node.js', 'AWS', 'Docker', 'Kubernetes', 'PostgreSQL', 'Prisma', 'Redis'],
-      githubUrl: 'https://github.com/username/cloud-manager',
+      githubUrl: 'https://github.com/songddung',
 
       troubleshooting: [
         {
@@ -73,14 +79,14 @@ export default function App() {
     },
     {
       id: '3',
-      title: 'CHAMBER: 실시간 구역별 스마트 공조 관리 시스템',
+      title: 'CHAMBER: \n실시간 구역별 스마트 공조 관리 시스템',
       description: '실시간 IoT 센서 데이터를 시각화하고 제어하는 스마트 공조 관리 시스템의 프론트엔드 전체를 담당했습니다. React 기반의 웹 대시보드와 Flutter 기반의 모바일 앱을 개발했습니다.',
       longDescription: 'WebSocket을 이용해 100ms 이내의 실시간 데이터 동기화를 구현했으며, 특히 Flutter 앱에서는 색맹 모드 4종을 포함한 전역 접근성 시스템을 설계하여 모든 UI에 적용했습니다. React 웹에서는 사용자 입력과 실시간 데이터 간의 충돌을 해결하여 입력 보존율 100%를 달성했습니다.',
-      image: dashboardImage,
+      image: p1Image,
       duration: '2025년 7월 - 2025년 8월 (7주)',
       technologies: ['React', 'Flutter', 'TypeScript', 'Websocket', 'Zustand', 'Tanstack Query'],
-      githubUrl: 'https://github.com/username/analytics-dashboard',
-      liveUrl: 'https://analytics-demo.com',
+      githubUrl: 'https://github.com/songddung/chamber',
+
       troubleshooting: [
         {
           problem: '관리자가 웹에서 온도를 조정하는 중 실시간 WebSocket 데이터가 수신되어 사용자 입력이 덮어씌워짐',
@@ -222,11 +228,14 @@ export default function App() {
 
                     <div className="order-1 lg:order-2 flex justify-center">
                       <div className="relative">
-                        <div className="w-90 h-90 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl shadow-primary/10">
+                        <div
+                          className="w-90 h-90 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl shadow-primary/10 cursor-pointer"
+                          onClick={() => setIsProfileModalOpen(true)}
+                        >
                           <ImageWithFallback
                             src={profileImage}
                             alt="프로필 사진"
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                           />
                         </div>
                         <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-2xl opacity-50 animate-pulse"></div>
@@ -438,6 +447,13 @@ export default function App() {
           <Route path="/project/:id" element={<ProjectDetailPage projects={projects} />} />
         </Routes>
         <Footer />
+
+        <ImageModal
+          isOpen={isProfileModalOpen}
+          onClose={() => setIsProfileModalOpen(false)}
+          imageSrc={profileImage}
+          imageAlt="송현광 프로필 사진"
+        />
       </div>
     </Router>
   );

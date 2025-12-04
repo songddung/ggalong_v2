@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/
 import { Button } from "./ui/button";
 import TechBadge from "./TechBadge";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
+import { ImageModal } from "./ImageModal";
 
 // ▼▼▼ 인터페이스 정의 ▼▼▼
 interface TroubleshootingItem {
@@ -61,10 +62,12 @@ const renderWithLineBreaks = (text: string) => {
 };
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
   return (
     <>
       <Card className="flex flex-col h-full group overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden cursor-pointer" onClick={() => setIsModalOpen(true)}>
           <ImageWithFallback
             src={project.image}
             alt={project.title}
@@ -118,6 +121,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </Button>
         </CardContent>
       </Card>
+
+      <ImageModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        imageSrc={project.image}
+        imageAlt={project.title}
+      />
     </>
   );
 };

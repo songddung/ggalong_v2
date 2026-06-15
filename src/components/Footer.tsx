@@ -11,7 +11,7 @@ const Footer = () => {
     },
     {
       name: 'Tistory',
-      href: 'https://songddung.tistory.com',
+      href: 'https://flowcode.tistory.com',
       icon: <img src={tistoryIcon} alt="Tistory" className="w-5 h-5" />,
     },
     {

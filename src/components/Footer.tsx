@@ -29,11 +29,11 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-4">
               <span className="text-2xl font-mono text-primary"></span>
-              <span className="ml-3 text-lg font-semibold">개발자로서</span>
+              <span className="ml-3 text-lg font-semibold">DBMS 운영자로서</span>
             </div>
             <p className="text-muted-foreground max-w-md">
-              새로운 문제에 주저하지 않고 도전하며,
-              <br /> 탄탄한 기본기로 합리적인 해결책을 제시하겠습니다.
+              보이지 않는 문제의 원인을 끝까지 파고들며,
+              <br /> 철저한 검증으로 시스템의 신뢰를 증명하겠습니다.
               <br /> 감사합니다.
             </p>
           </div>
@@ -66,7 +66,7 @@ const Footer = () => {
 
         <div className="border-t border-border mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm">
-            © 2025 송현광. All rights reserved.
+            © 2026 송현광. All rights reserved.
           </p>
           <p className="text-muted-foreground text-sm mt-2 sm:mt-0">
             Made with  using React & TypeScript

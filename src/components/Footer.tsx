@@ -29,7 +29,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center mb-4">
               <span className="text-2xl font-mono text-primary"></span>
-              <span className="ml-3 text-lg font-semibold">백엔드 개발자</span>
+              <span className="ml-3 text-lg font-semibold">개발자로서</span>
             </div>
             <p className="text-muted-foreground max-w-md">
               새로운 문제에 주저하지 않고 도전하며,

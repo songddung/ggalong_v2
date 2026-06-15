@@ -52,30 +52,35 @@ export default function App() {
       ],
       retrospect: `User, Media, Insight 세 가지 핵심 서비스를 직접 개발하며 독립된 기능들이 어떻게 유기적으로 상호작용하는지 깊이 이해할 수 있었습니다. \n JWT의 Stateless 한계점을 극복하기 위해 Redis로 토큰 버전을 관리하는 로직을 직접 설계하며 인증 시스템의 보안을 한 단계 끌어올렸고, S3를 연동하며 대용량 파일 처리의 효율성을 고민했습니다.\n 특히 Insight 서비스에서 관심도 계산 로직을 만들고 외부 API와 연동하는 과정은 단순한 CRUD를 넘어, 데이터를 가공하여 새로운 가치를 만드는 백엔드 개발의 매력을 느끼게 해주었습니다.\n 이 프로젝트를 통해 각 서비스의 책임과 역할을 명확히 분리하고, 안정성과 성능을 모두 고려하는 시스템 설계 역량을 기를 수 있었습니다.`,
     },
-    {
-      id: '2',
-      title: 'PAI : \nRefactor (MSA/DDD)',
-      description: `기존 PAI 프로젝트의 확장성과 유지보수성을 확보하기 위해 Hexagonal Architecture와 DDD를 적용하여 Clean Architecture 구조로 재구성한 리팩토링 프로젝트입니다.`,
-      longDescription: '단일 서버를 7개의 독립적인 마이크로 서비스로 분리하고, Entity와 Value Object 패턴으로 도메인 로직을 명확화했습니다. Kubernetes를 도입하여 독립 배포, 자동 스케일링 환경을 구축했습니다.',
-      image: p3Image,
-      duration: '2025년 10월 - 2025년 11월 (~ing)',
-      technologies: ['Node.js', 'AWS', 'Docker', 'Kubernetes', 'PostgreSQL', 'Prisma', 'Redis'],
-      githubUrl: 'https://github.com/songddung',
+   {
+  id: '2',
+  title: 'PAI : \nRefactor (MSA/DDD)',
+  description: `기존 PAI 프로젝트의 확장성과 유지보수성을 확보하기 위해 Hexagonal Architecture와 DDD를 적용하고, AWS EKS 기반으로 인프라를 고도화한 리팩토링 프로젝트입니다.`,
+  longDescription: '단일 서버를 7개의 독립적인 마이크로 서비스로 분리하고, Entity와 Value Object 패턴으로 도메인 로직을 명확화했습니다. 나아가 AWS EKS(Managed Kubernetes)를 도입하여 고가용성(HA)을 확보하고, 오토스케일링을 통해 유연한 트래픽 대응 환경을 구축했습니다.',
+  image: p3Image,
+  duration: '2025년 10월 - 2025년 12월',
+  technologies: ['Node.js', 'AWS EKS', 'Docker', 'Kubernetes', 'PostgreSQL', 'Prisma', 'Redis'],
+  githubUrl: 'https://github.com/songddung',
 
-      troubleshooting: [
-        {
-          problem: '단일 서버 구조의 한계와 낮은 유지보수성, 테스트의 어려움',
-          solution: 'Hexagonal Architecture와 DDD를 적용하여 Clean Architecture 구조로 재구성하고, 단일 서버를 7개의 마이크로 서비스로 분리',
-          result: '비즈니스 로직과 인프라 계층 분리로 테스트 용이성 및 코드 품질 개선, 유지보수성 향상'
-        },
-        {
-          problem: '백엔드와 프론트엔드 간 타입 불일치 및 일관성 문제',
-          solution: 'Shared-types Package를 NPM 패키지로 배포하여 타입 공유',
-          result: '프론트엔드와 백엔드 간 타입 일관성 보장, 코드 재사용성 62% 증가'
-        },
-      ],
-      retrospect: `시스템이 성장함에 따라 아키텍처의 중요성을 절실히 깨달았습니다. 단순히 기능을 구현하는 것을 넘어, 미래의 확장성과 안정성을 고려하여 아키텍처를 설계하는 과정을 경험하며 개발자로서의 시야를 넓힐 수 있었습니다. 마이크로 서비스 환경에서 타입 관리의 중요성을 이해하고, Kubernetes를 통한 배포 자동화 경험을 통해 시스템 전반에 대한 이해도를 높였습니다.`,
+  troubleshooting: [
+    {
+      problem: '단일 서버 구조의 한계와 낮은 유지보수성, 테스트의 어려움',
+      solution: 'Hexagonal Architecture와 DDD를 적용하여 Clean Architecture 구조로 재구성하고, 단일 서버를 7개의 마이크로 서비스로 분리',
+      result: '비즈니스 로직과 인프라 계층 분리로 테스트 용이성 및 코드 품질 개선, 유지보수성 향상'
     },
+    {
+      problem: '자체 구축(Self-hosted) 쿠버네티스 운영의 복잡성 및 마스터 노드 관리 부담',
+      solution: 'AWS EKS(Elastic Kubernetes Service)로 마이그레이션하여 컨트롤 플레인 관리를 위임',
+      result: '인프라 관리 리소스를 40% 절감하고, 안정적인 클러스터 운영 및 노드 오토스케일링 환경 확보'
+    },
+    {
+      problem: '백엔드와 프론트엔드 간 타입 불일치 및 일관성 문제',
+      solution: 'Shared-types Package를 NPM 패키지로 배포하여 타입 공유',
+      result: '프론트엔드와 백엔드 간 타입 일관성 보장, 코드 재사용성 62% 증가'
+    },
+  ],
+  retrospect: `시스템이 성장함에 따라 아키텍처의 중요성을 절실히 깨달았습니다. DDD를 통해 복잡한 비즈니스 로직을 구조화하고, AWS EKS를 도입하며 클라우드 네이티브 환경에서의 인프라 운영 노하우를 쌓았습니다. 단순히 기능을 구현하는 것을 넘어, 서비스의 안정성과 확장성을 모두 고려하는 엔지니어링 관점을 갖게 되었습니다.`,
+},
     {
       id: '3',
       title: 'CHAMBER: \n실시간 구역별 스마트 공조 관리 시스템',
@@ -103,7 +108,6 @@ export default function App() {
         `특히 WebSocket을 통해 실시간으로 쏟아지는 데이터를 안정적으로 처리하고, 사용자 입력과 동기화하는 경험은 프론트엔드에서의 상태 관리의 중요성을 다시 한번 깨닫게 해주었습니다.\n`,
         '또한, 색맹 모드와 같은 접근성 기능을 직접 설계하고 구현하며 모든 사용자를 고려하는 개발의 사회적 책임과 가치를 배울 수 있었던 의미 있는 프로젝트였습니다.'
       ].join(' '),
-      // ▲▲▲ 문제 해결 및 회고 추가 ▲▲▲
     },
   ];
 
@@ -154,6 +158,9 @@ export default function App() {
 
   // 기술 스택 정보
   const techStack = [
+    { name: 'AWS', icon: <Cloud className="w-5 h-5" /> },
+    { name: 'Docker', icon: <Server className="w-5 h-5" /> },
+    { name: 'Kubernetes', icon: <Server className="w-5 h-5" /> },
     { name: 'Java', icon: <Server className="w-5 h-5" /> },
     { name: 'Springboot', icon: <Code className="w-5 h-5" /> },
     { name: 'Node.js', icon: <Server className="w-5 h-5" /> },
@@ -163,9 +170,6 @@ export default function App() {
     { name: 'Prisma', icon: <Database className="w-5 h-5" /> },
     { name: 'MySQL', icon: <Database className="w-5 h-5" /> },
     { name: 'JPA', icon: <Database className="w-5 h-5" /> },
-    { name: 'AWS', icon: <Cloud className="w-5 h-5" /> },
-    { name: 'Docker', icon: <Server className="w-5 h-5" /> },
-    { name: 'Kubernetes', icon: <Server className="w-5 h-5" /> },
   ];
 
   return (
@@ -182,7 +186,7 @@ export default function App() {
                     <div className="order-2 lg:order-1">
                       <div className="space-y-6">
                         <div className="space-y-2">
-                          <p className="text-primary font-mono">안녕하세요, 저는 <b>신입 백엔드 개발자</b></p>
+                          <p className="text-primary font-mono">안녕하세요, 저는 <b>신입 개발자</b></p>
                           <div className="flex items-baseline gap-2">
                             <h1 className="text-4xl lg:text-6xl font-bold">
                               송현광
@@ -198,17 +202,6 @@ export default function App() {
                           궁금증이 많아서 문제의 원인을 파고들고, 그 과정에서 더 나은 해결책을 찾는 걸 즐깁니다. <br />
                           "왜?"라는 질문이 결국 더 나은 시스템을 만든다고 믿습니다.
                         </p>
-                        {/* <div className="flex flex-wrap gap-4">
-                          <Button size="lg" className="group">
-                            <Mail className="w-4 h-4 mr-2" />
-                            연락하기
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                          </Button>
-                          <Button variant="outline" size="lg">
-                            <Download className="w-4 h-4 mr-2" />
-                            이력서 다운로드
-                          </Button>
-                        </div> */}
 
                         <div className="flex gap-4 pt-4">
                           <Button variant="ghost" size="sm" asChild>
@@ -250,7 +243,7 @@ export default function App() {
                   <div className="text-center mb-16">
                     <h2 className="text-3xl lg:text-4xl font-bold mb-4">소개</h2>
                     <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                      끊임없이 질문하고 학습하며, 최고의 동료가 될 준비를 마친 백엔드 개발자입니다.
+                      끊임없이 질문하고 학습하며, 최고의 동료가 될 준비를 마친 개발자입니다.
                     </p>
                   </div>
 
@@ -315,7 +308,6 @@ export default function App() {
                         </CardHeader>
                         <CardContent>
                           <div className="space-y-2">
-                            {/* <h4 className="font-semibold">컴퓨터공학과 학사</h4> */}
                             <p className="text-muted-foreground">정보처리기사 </p>
                             <p className="text-sm text-muted-foreground">
                               SQLD

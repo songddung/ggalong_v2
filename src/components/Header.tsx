@@ -29,7 +29,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <Link to="/#home" smooth className="text-xl font-mono text-primary hover:text-primary/80 transition-colors">
-              Song.dev
+              ggalong.me
             </Link>
           </div>
 

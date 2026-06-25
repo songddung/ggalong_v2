@@ -28,22 +28,31 @@ export default function App() {
       id: '1', 
       title: '대규모 클라우드 전환: \n DB 마이그레이션 및 정합성 검증(진행중)',
       description: '우정정보관리원의 대규모 클라우드 마이그레이션 프로젝트에서 총 19개 데이터베이스(Oracle, MSSQL)의 이관 및 데이터 무결성 검증을 수행한 실무 프로젝트입니다.(진행중)',
-      longDescription: '1개 핵심 데이터베이스의 Import 작업을 직접 전담하고, 대전 국가정보자원관리원에서 이관한 나머지 18개 DB의 정합성을 검증. 할당된 스토리지 부족 문제를 해결하기 위해 사전 DB 슬림화 작업을 위한 준비, Linux 환경에서 awk 스크립트와 sqlplus를 활용해 대용량 로그 파싱 및 오브젝트 검증을 자동화하여 시스템 무결성을 확보했습니다.',
+      longDescription: `1개 핵심 데이터베이스의 Import 작업을 직접 전담하고, 대전 국가정보자원관리원에서 이관하는 나머지 18개 DB의 정합성을 검증. 
+      할당된 스토리지 부족 문제를 해결하기 위해 사전 DB 슬림화 작업을 위한 준비, 
+      RAC 환경 전환에 따라 Sequence 성능 최적화 및 경합 방지를 위해 Cache size 재설계,
+      Linux 환경에서 awk 스크립트와 sqlplus를 활용해 대용량 로그 파싱 및 오브젝트 검증을 자동화하여 시스템 무결성을 확보해 나가고 있습니다.
+      `,
       image: p1Image, 
-      duration: '2026년 01월 - 현재',
+      duration: '2026년 01월 - 2026년 08월(예정)',
       technologies: ['Oracle', 'MSSQL', 'Linux', 'Shell Script (awk)', 'sqlplus'],
       githubUrl: '', 
       liveUrl: '',
       troubleshooting: [
         {
           problem: '할당된 클라우드 DB 인스턴스의 스토리지 공간 부족 현상 발생',
-          solution: '데이터베이스 자원 사용량을 선제적으로 분석하여 사전 슬림화(용량 최적화) 작업 기획 및 불필요한 데이터 정리 준비',
-          result: '이관에 필요한 여유 공간을 확보하여 마이그레이션 중단 리스크 제거 및 안정성 증대'
+          solution: '데이터베이스 자원 사용량을 선제적으로 분석하여 사전 슬림화(용량 최적화) 작업 및 불필요한 데이터 정리 준비',
+          result: '이관에 필요한 여유 공간을 확보하여 한정된 리소스내 작업 진행'
+        },
+        {
+          problem: '서비스 무중단을 위해 CDC 솔루션을 사용하여 데이터는 타겟 테이블에 정상 적재되어 MAX ID가 상승하지만, DB 내부의 sequence 객체는 과거 값으로 머물러 데이터 무결성 제약조건 위반 발생 위험',
+          solution: 'ORACLE 19c 버전에서 사용할 수 있는 RESTART 명령으로 sequence 동기화 프로세스 적용',
+          result: 'sequence gap으로 인한 무결성 제약조건 위반 장애를 선제적으로 차단'
         },
         {
           problem: '18개 DB에서 발생하는 방대한 이관 로그를 수동으로 검증하기에는 시간과 정확도에 한계 존재',
-          solution: 'Linux 환경에서 awk 명령어를 활용하여 방대한 로그 파일 내 실제 테이블 수와 레코드 수만 추출하는 쉘 스크립트 작성 및 적용',
-          result: '휴먼 에러 방지 및 빠르고 정확한 데이터 정합성 검증(테이블, 레코드 수)'
+          solution: 'Linux 환경에서 awk 명령어를 활용하여 방대한 로그 파일 내 실제 테이블 크기와 레코드 수만 추출하는 쉘 스크립트 작성 및 적용',
+          result: '휴먼 에러 방지 및 빠르고 정확한 데이터 정합성 검증(테이블 사이즈, 레코드 수)'
         },
         {
           problem: '데이터 외에 인덱스, 트리거, 시퀀스 등 DB 오브젝트의 누락 없는 완벽한 이관 확인 필요',
@@ -57,9 +66,9 @@ export default function App() {
       //   `단순한 데이터 이동을 넘어, 한정된 디스크 공간 제약을 해결하기 위해 슬림화 작업을 기획하는 과정은 DBA 및 시스템 운영자로서 필수적인 자원 관리 역량의 중요성을 깊이 깨닫는 계기가 되었습니다.`
       // ].join(' '),
       retrospect: [
-        `실제 운영 환경에서 19개나 되는 대규모 데이터베이스를 다루며, 단 하나의 레코드 유실도 허용하지 않는 '데이터 무결성'의 무게감을 체감했습니다.\n`,
-        `특히 GUI가 아닌 CLI(Linux, sqlplus) 환경에서 쉘 스크립트(awk)를 활용해 대용량 로그를 파싱하고 문제를 해결하면서 실무형 엔지니어링 감각을 크게 키울 수 있었습니다.\n`,
-        `단순한 데이터 이동을 넘어, 한정된 디스크 공간 제약을 해결하기 위해 슬림화 작업을 기획하는 과정은 DBA 및 시스템 운영자로서 필수적인 자원 관리 역량의 중요성을 깊이 깨닫는 계기가 되었습니다.`
+        `국가 공공기관의 핵심 데이터베이스 19개를 다루며, 데이터 무결성과 서비스 무중단이 지니는 절대적인 무게감을 깊이 체감했습니다.\n`,
+        `눈으로 확인하는 수동 검증의 한계를 깨닫고, Linux 기반의 쉘 스크립트와 딕셔너리 뷰를 활용한 교차 검증 파이프라인을 직접 구축하여 빠르고 오차 없는 시스템 엔지니어링 감각을 키웠습니다.\n`,
+        `한정된 디스크 공간에서의 슬림화 전략부터 Lock 경합을 고려한 시퀀스 재설계까지, 겉으로 드러나지 않는 시스템의 병목을 찾아내고 최적화하는 과정을 통해 튼튼한 인프라와 백엔드의 유기적인 연결성을 완벽히 이해하게 되었습니다.`
       ].join(' '),
     },
     {
@@ -173,7 +182,7 @@ export default function App() {
       title: 'SSAFY (Samsung Software Academy For Youth)',
       company: '멀티캠퍼스',
       location: '광주광역시, 대한민국',
-      period: '2025.02 - 현재',
+      period: '2025.02 - 2025.12',
       description: [
         '알고리즘 - 컴퓨팅 사고력, 기본/응용/심화 SW 문제해결',
         '코딩 - Front-End, Back-End, DB등 SW 필수 지식과 데일리 실습을 중심으로 한 강도 높은 코딩 학습',
@@ -388,7 +397,7 @@ export default function App() {
                     ))}
                   </div>
 
-                  <div className="text-center mt-12">
+                  {/*<div className="text-center mt-12">
                     <Button variant="outline" size="lg" asChild>
                       <a href="https://github.com/songddung" target="_blank" rel="noopener noreferrer">
                         <Github className="w-4 h-4 mr-2" />
@@ -396,7 +405,7 @@ export default function App() {
                         <ExternalLink className="w-4 h-4 ml-2" />
                       </a>
                     </Button>
-                  </div>
+                  </div> */}
                 </div>
               </section>
 
